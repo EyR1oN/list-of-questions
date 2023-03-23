@@ -9,13 +9,17 @@ export default function QuestionnaireList() {
 
   useEffect(() => {
     async function fetchQuestionnaires() {
+      const token = localStorage.getItem("token");
+      const headers = { Authorization: `Bearer ${token}` };
       const response = await axios.get(
-        "https://localhost:44326/api/questionnaire/getall"
+        "https://localhost:44326/api/questionnaire/getall",
+        { headers }
       );
       setQuestionnaires(response.data);
     }
     fetchQuestionnaires();
   }, []);
+  
 
   return (
     <div className="container mt-5">

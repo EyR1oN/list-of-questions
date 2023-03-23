@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Container, Form, ListGroup } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function Questionnaire() {
   const { id } = useParams();
@@ -9,19 +10,21 @@ function Questionnaire() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswerIds, setSelectedAnswerIds] = useState({});
   const [finished, setFinished] = useState(false);
+  const navigate = useNavigate();
 
-  // Fetch questionnaire data from backend API
   useEffect(() => {
     async function fetchQuestionnaire() {
+      const token = localStorage.getItem("token");
+      const headers = { Authorization: `Bearer ${token}` };
       const response = await axios.get(
-        `https://localhost:44326/api/questionnaire/getbyid/${id}`
+        `https://localhost:44326/api/questionnaire/getbyid/${id}`,
+        { headers }
       );
       setQuestionnaire(response.data);
     }
     fetchQuestionnaire();
   }, [id]);
-
-  // Handle user's answer choice selection
+  
   function handleAnswerSelection(answerId) {
     setSelectedAnswerIds({
       ...selectedAnswerIds,
@@ -29,7 +32,6 @@ function Questionnaire() {
     });
   }
 
-  // Handle moving to the next question
   function handleNextQuestion() {
     if (currentQuestionIndex + 1 < questionnaire?.questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -38,7 +40,6 @@ function Questionnaire() {
     }
   }
 
-  // Handle finishing the questionnaire
   function handleFinish() {
     let score = 0;
     questionnaire?.questions.forEach((question, index) => {
@@ -53,10 +54,10 @@ function Questionnaire() {
     const percentage = (score / questionnaire.questions.length) * 100;
   
     alert(`Your total score: ${percentage}%`);
+
+    navigate('/questionnairies', { replace: true });
   }
   
-
-  // Render the questionnaire page
   if (!questionnaire) {
     return <h1 className="mt-5 ms-5">Loading...</h1>;
   }
@@ -105,6 +106,12 @@ function Questionnaire() {
           Finish
         </Button>
       )}
+      <Button
+        className="mt-3 ms-3"
+        onClick={() => {navigate('/questionnairies', { replace: true });}}
+      >
+        Cancel
+      </Button>
     </Container>
   );
 }
