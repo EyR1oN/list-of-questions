@@ -1,10 +1,10 @@
 ## Available Scripts
 
-Firstlu clone this project to your local machine using:
+Firstly clone this project to your local machine using:
 
 ### `git clone https://github.com/EyR1oN/list-of-questions.git`
 
-After that go to __loq__ folder use command to install packages:
+After that go to __loq__ folder and use command to install packages:
 
 ### `npm install`
 
