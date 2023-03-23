@@ -23,14 +23,12 @@ function Login() {
         username,
         password
       });
-      console.log(response.data)
       if (response.status === 200) {
         localStorage.setItem("token", response.data);
         navigate('/questionnairies', { replace: true });
       } else {
         alert(response.data);
       }
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -39,7 +37,7 @@ function Login() {
   return (
     <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
       <Row className="justify-content-md-center">
-      <h1 class="text-uppercase mb-5">Login to continue</h1>
+      <h1 className="text-uppercase mb-5">Login to continue</h1>
           <Form onSubmit={handleSubmit} style={{width: '100%'}}>
             <Form.Group controlId="formBasicUsername">
               <Form.Label>Username:</Form.Label>

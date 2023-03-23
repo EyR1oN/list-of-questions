@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import StartQuestionnaireModal from "./Modal";
+
 export default function QuestionnaireList() {
   const [questionnaires, setQuestionnaires] = useState([]);
 
@@ -34,9 +36,7 @@ export default function QuestionnaireList() {
                     <h2>{questionnaire.title}</h2>
                     <p>{questionnaire.description}</p>
                   </div>
-                  <Link to={`/questionnaires/${questionnaire.id}`}>
-                    <Button variant="success">Start Questionnaire</Button>
-                  </Link>
+                  <StartQuestionnaireModal questionnaire={questionnaire}/>
                 </div>
               </li>
             ))}
