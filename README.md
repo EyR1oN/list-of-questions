@@ -4,7 +4,7 @@ Firstlu clone this project to your local machine using:
 
 ### `git clone https://github.com/EyR1oN/list-of-questions.git`
 
-After that use command to install packages:
+After that go to __loq__ folder use command to install packages:
 
 ### `npm install`
 
