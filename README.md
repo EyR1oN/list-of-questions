@@ -1,12 +1,8 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 Firstlu clone this project to your local machine using:
 
-### `git clone`
+### `git clone https://github.com/EyR1oN/list-of-questions.git`
 
 After that use command to install packages:
 
@@ -21,4 +17,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
